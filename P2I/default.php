@@ -1,8 +1,8 @@
 <?php 
-include("include/connect.php"); // Assuming this file contains the database connection function
+include("include/connect.php"); 
 $bdd = getDb();
 
-$query = "SELECT Titre, Image2 FROM films WHERE code = 1"; // Select both the title and the image path
+$query = "SELECT Titre, Image2 FROM films WHERE code = 1"; 
 $statement = $bdd->prepare($query);
 $statement->execute();
 $film = $statement->fetch(PDO::FETCH_ASSOC);
@@ -27,7 +27,7 @@ $film = $statement->fetch(PDO::FETCH_ASSOC);
 
     <fieldset>
         <h3><?= $film['Titre'] ?></h3>
-        <img src="<?= $film['Image2'] ?>" alt="Film Image"> <!-- Display the image -->
+        <img src="<?= $film['Image2'] ?>" alt="Film Image"> 
     </fieldset>
 
 </body>
