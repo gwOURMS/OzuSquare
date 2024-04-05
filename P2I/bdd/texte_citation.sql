@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 05 avr. 2024 à 11:55
+-- Généré le : ven. 05 avr. 2024 à 11:56
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -24,45 +24,44 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `listes_films`
+-- Structure de la table `texte_citation`
 --
 
-CREATE TABLE `listes_films` (
-  `id_film` int(255) NOT NULL,
-  `id_liste` int(255) NOT NULL
+CREATE TABLE `texte_citation` (
+  `id_texte` int(255) NOT NULL,
+  `id_citation` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `listes_films`
+-- Déchargement des données de la table `texte_citation`
 --
 
-INSERT INTO `listes_films` (`id_film`, `id_liste`) VALUES
-(1, 2),
-(2, 2),
-(4, 3),
-(1, 2);
+INSERT INTO `texte_citation` (`id_texte`, `id_citation`) VALUES
+(1, 5),
+(1, 6),
+(1, 7);
 
 --
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `listes_films`
+-- Index pour la table `texte_citation`
 --
-ALTER TABLE `listes_films`
-  ADD KEY `id_film` (`id_film`),
-  ADD KEY `id_liste` (`id_liste`);
+ALTER TABLE `texte_citation`
+  ADD KEY `id_texte` (`id_texte`),
+  ADD KEY `id_citation` (`id_citation`);
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `listes_films`
+-- Contraintes pour la table `texte_citation`
 --
-ALTER TABLE `listes_films`
-  ADD CONSTRAINT `listes_films_ibfk_1` FOREIGN KEY (`id_liste`) REFERENCES `listes` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `listes_films_ibfk_2` FOREIGN KEY (`id_film`) REFERENCES `films` (`Code`);
+ALTER TABLE `texte_citation`
+  ADD CONSTRAINT `texte_citation_ibfk_1` FOREIGN KEY (`id_texte`) REFERENCES `texte` (`Id`),
+  ADD CONSTRAINT `texte_citation_ibfk_2` FOREIGN KEY (`id_citation`) REFERENCES `citation` (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -18,7 +18,8 @@ $film = $statement->fetch(PDO::FETCH_ASSOC);
     <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-<?php include_once('include/header.php'); ?> <br> 
+<?php //Méthode basique pour une création de liste
+include_once('include/header.php'); ?> <br> 
 <h1>Créer une liste</h1>
     <form action="traitementListe.php" method="POST">
         <label for="nomListe">Nom de la liste :</label><br>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 06 mars 2024 à 22:35
+-- Généré le : ven. 05 avr. 2024 à 11:54
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -34,6 +34,14 @@ CREATE TABLE `listes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Déchargement des données de la table `listes`
+--
+
+INSERT INTO `listes` (`Id`, `Nom`, `Description`) VALUES
+(2, 'Films préférés', 'aaaa'),
+(3, 'Très bons films', 'J\'aime beaucoup ces films');
+
+--
 -- Index pour les tables déchargées
 --
 
@@ -55,7 +63,7 @@ ALTER TABLE `listes`
 -- AUTO_INCREMENT pour la table `listes`
 --
 ALTER TABLE `listes`
-  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

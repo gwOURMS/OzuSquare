@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 05 avr. 2024 à 11:55
+-- Généré le : ven. 05 avr. 2024 à 11:56
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -24,45 +24,41 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `listes_films`
+-- Structure de la table `texte`
 --
 
-CREATE TABLE `listes_films` (
-  `id_film` int(255) NOT NULL,
-  `id_liste` int(255) NOT NULL
+CREATE TABLE `texte` (
+  `Id` int(255) NOT NULL,
+  `Nom` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `listes_films`
+-- Déchargement des données de la table `texte`
 --
 
-INSERT INTO `listes_films` (`id_film`, `id_liste`) VALUES
-(1, 2),
-(2, 2),
-(4, 3),
-(1, 2);
+INSERT INTO `texte` (`Id`, `Nom`) VALUES
+(1, 'Citations');
 
 --
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `listes_films`
+-- Index pour la table `texte`
 --
-ALTER TABLE `listes_films`
-  ADD KEY `id_film` (`id_film`),
-  ADD KEY `id_liste` (`id_liste`);
+ALTER TABLE `texte`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Id` (`Id`);
 
 --
--- Contraintes pour les tables déchargées
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `listes_films`
+-- AUTO_INCREMENT pour la table `texte`
 --
-ALTER TABLE `listes_films`
-  ADD CONSTRAINT `listes_films_ibfk_1` FOREIGN KEY (`id_liste`) REFERENCES `listes` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `listes_films_ibfk_2` FOREIGN KEY (`id_film`) REFERENCES `films` (`Code`);
+ALTER TABLE `texte`
+  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

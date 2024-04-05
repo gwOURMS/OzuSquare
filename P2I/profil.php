@@ -1,20 +1,20 @@
-<?php
+<?php //GESTION DE LA BDD
 include("include/connect.php"); 
 $bdd = getDb();
 
-// Récupérer tous les films depuis la base de données
+
 $query_films = "SELECT Titre, Image2, Réalisateur, Date FROM films";
 $statement_films = $bdd->prepare($query_films);
 $statement_films->execute();
 $films = $statement_films->fetchAll(PDO::FETCH_ASSOC);
 
-// Récupérer les noms des listes depuis la base de données
+
 $query_listes = "SELECT Id, Nom FROM listes";
 $statement_listes = $bdd->prepare($query_listes);
 $statement_listes->execute();
 $listes = $statement_listes->fetchAll(PDO::FETCH_ASSOC);
 
-// Récupérer les films dans les listes depuis la base de données
+
 $query_films_listes = "SELECT films.Titre, films.Image2, films.Réalisateur, films.Date FROM films
                        INNER JOIN listes_films ON films.code = listes_films.id_film";
 $statement_films_listes = $bdd->prepare($query_films_listes);
@@ -36,11 +36,11 @@ $textes = $statement_textes->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" type="text/css" href="mystyle.css">
     <style>
     #div1 {
-        width: 95%; /* Full width */
-        min-height: 300px; /* Adjust height as needed */
+        width: 95%;
+        min-height: 300px; 
         padding: 10px; 
         border: 1px solid #aaaaaa;
-        position: relative; /* Required for absolute positioning of draggable elements */
+        position: relative;
     }
 
 
@@ -51,16 +51,16 @@ $textes = $statement_textes->fetchAll(PDO::FETCH_ASSOC);
     position: relative;
     padding: 10px;
     margin-bottom: 10px;
-    background-color: #f9f9f9; /* Light grey background */
+    background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .citation-content {
     font-size: 16px;
-    color: #333; /* Text color */
-    line-height: 1.4; /* Adjust line height for better readability */
+    color: #333;
+    line-height: 1.4;
 }
     </style>
 </head>
@@ -107,7 +107,7 @@ $textes = $statement_textes->fetchAll(PDO::FETCH_ASSOC);
     <h3><?= $texte['Nom'] ?></h3>
     <ul>
         <?php 
-        // Récupérer les citations associées à ce texte
+        // Récupérer les citations associées à cette liste (nommées "texte")
         $query_citations = "SELECT Id, Contenu FROM citation
                             INNER JOIN texte_citation ON citation.Id = texte_citation.id_citation
                             WHERE texte_citation.id_texte = ?";
@@ -132,22 +132,26 @@ $textes = $statement_textes->fetchAll(PDO::FETCH_ASSOC);
 
 
     <script>
+
+        // CODE JAVASCRIPT POUR LE DRAG AND DROP
+
     function allowDrop(ev) {
         ev.preventDefault();
-    }
+    } //Zone de drop
 
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
-    }
+    } //Autorisation à drag
 
     function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     var draggedElement = document.getElementById(data);
 
-    // Vérification qu'il n'y a rien
-    if (ev.target.tagName !== "IMG" && ev.target.tagName !== "LI") {
+    // Vérification qu'il n'y a rien àl'endroit ou on drop l'image pour éviter la disparation d'éléments
+    if (ev.target.tagName !== "IMG" && ev.target.tagName !== "LI") { 
         // Calcul de la nouvelle position
+        //Il est important de prendre en compte la taille de l'image ou du texte pour éviter les décalages
    var dropX = ev.clientX - ev.target.getBoundingClientRect().left - (draggedElement.offsetWidth / 2);
     var dropY = ev.clientY - ev.target.getBoundingClientRect().top - (draggedElement.offsetHeight / 2);
         
@@ -160,11 +164,13 @@ $textes = $statement_textes->fetchAll(PDO::FETCH_ASSOC);
         ev.target.appendChild(draggedElement);
     } else {
 
-        console.log("Cannot drop image onto another image.");
+        console.log("erreur");
     }
     
 
 }
+
+//POSSIBILITE DE SUPPRIMER LES IMAGES OU LES TEXTES
 function deleteImage(event, listeId, key) {
     var imageId = 'dragFilm' + listeId + key; 
     var imageElement = document.getElementById(imageId);

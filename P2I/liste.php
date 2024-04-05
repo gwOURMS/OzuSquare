@@ -88,7 +88,11 @@ $films = $statement_films->fetchAll(PDO::FETCH_ASSOC);
         <input type="button" class="add-button" value="Écrire un texte" onclick="window.location.href='creationCitation.php';">
         <br>
         <br>
-        <?php foreach ($films as $film) { ?>
+
+        
+        <?php
+        //AFFICHAGE DE TOUS LES FILMS DE LA BDD
+        foreach ($films as $film) { ?>
             <div class="film">
                 <h2><?= $film['Titre'] ?></h2>
                 <img src="<?= $film['Image2'] ?>" alt="Film Image">

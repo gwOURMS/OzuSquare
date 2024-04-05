@@ -24,45 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `listes_films`
+-- Structure de la table `citation`
 --
 
-CREATE TABLE `listes_films` (
-  `id_film` int(255) NOT NULL,
-  `id_liste` int(255) NOT NULL
+CREATE TABLE `citation` (
+  `Id` int(255) NOT NULL,
+  `Contenu` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `listes_films`
+-- Déchargement des données de la table `citation`
 --
 
-INSERT INTO `listes_films` (`id_film`, `id_liste`) VALUES
-(1, 2),
-(2, 2),
-(4, 3),
-(1, 2);
+INSERT INTO `citation` (`Id`, `Contenu`) VALUES
+(5, 'Mes films préférés'),
+(6, ' La Culture c’est la règle, l’art c’est l’exception '),
+(7, 'Hello');
 
 --
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `listes_films`
+-- Index pour la table `citation`
 --
-ALTER TABLE `listes_films`
-  ADD KEY `id_film` (`id_film`),
-  ADD KEY `id_liste` (`id_liste`);
+ALTER TABLE `citation`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Id` (`Id`);
 
 --
--- Contraintes pour les tables déchargées
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `listes_films`
+-- AUTO_INCREMENT pour la table `citation`
 --
-ALTER TABLE `listes_films`
-  ADD CONSTRAINT `listes_films_ibfk_1` FOREIGN KEY (`id_liste`) REFERENCES `listes` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `listes_films_ibfk_2` FOREIGN KEY (`id_film`) REFERENCES `films` (`Code`);
+ALTER TABLE `citation`
+  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
